@@ -19,8 +19,6 @@ impl IntoResponse for handlers_inner::HandlerError {
     }
 }
 
-// ---- CRUD for Questions ----
-
 pub async fn create_question(
     AxumState(AppState { questions_dao, .. }): AxumState<AppState>,
     JsonAxum(question): JsonAxum<Question>,
@@ -44,8 +42,6 @@ pub async fn delete_question(
 ) -> Result<impl IntoResponse, impl IntoResponse> {
     handlers_inner::delete_question(question_uuid, questions_dao.as_ref()).await
 }
-
-// ---- CRUD for Answers ----
 
 pub async fn create_answer(
     AxumState(AppState { answers_dao, .. }): AxumState<AppState>,
